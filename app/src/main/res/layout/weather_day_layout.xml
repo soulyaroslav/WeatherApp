@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="holder"
+            type="com.soulyaroslav.weatherapp.view.weather.ForecastHolder"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:background="@color/background1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".6"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                app:image="@{holder.forecast.iconType}"
+                app:defaultIconUpAnimation="@{holder.defaultIconUpAnimation}"
+                app:skipItemPosition="@{holder.skipItemPosition}"
+                app:upIconAnimation="@{holder.upIconAnimation}"
+                app:upIconPosition="@{holder.upIconPosition}"
+                app:upIconAnimateFinish="@{holder.upIconAnimateFinish}"
+                app:downIconAnimation="@{holder.downIconAnimation}"
+                app:downIconPosition="@{holder.downIconPosition}"
+                app:downIconAnimateFinish="@{holder.downIconAnimateFinish}"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".4"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/dayType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{holder.forecast.dayType}"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textColor="@color/title_color"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/degree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{holder.forecast.degree + '\u00B0'}"
+                android:textAllCaps="true"
+                android:textSize="32sp"
+                android:textColor="@android:color/white"
+                android:layout_below="@id/dayType"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_below="@id/degree"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{holder.forecast.weather}"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="50dp"
+                    app:animateDescription="@{holder.animateDescription}"
+                    app:descriptionAnimType="@{holder.descriptionAnimationType}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.format(@string/wind_format, holder.forecast.wind)}"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="5dp"
+                    app:animateDescription="@{holder.animateDescription}"
+                    app:descriptionAnimType="@{holder.descriptionAnimationType}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.format(@string/humidity_format, holder.forecast.humidity)}"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    app:animateDescription="@{holder.animateDescription}"
+                    app:descriptionAnimType="@{holder.descriptionAnimationType}"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

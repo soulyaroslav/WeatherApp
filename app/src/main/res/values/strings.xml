@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="day">Day</string>
+    <string name="evening">Evening</string>
+    <string name="morning">Morning</string>
+    <string name="night">Night</string>
+    <string name="degree_sign">\u00B0</string>
+    <string name="wind_format">Wind: %s</string>
+    <string name="humidity_format">Humidity: %s</string>
+</resources>
