@@ -1,11 +1,10 @@
 package com.soulyaroslav.weatherapp.view.weather;
 
+import android.databinding.ObservableBoolean;
+
 import com.soulyaroslav.weatherapp.data.DayForecast;
-import com.soulyaroslav.weatherapp.data.Forecast;
 import com.soulyaroslav.weatherapp.data.WeatherService;
 import com.soulyaroslav.weatherapp.view.base.ActivityViewModel;
-
-import java.util.List;
 
 import rx.Observer;
 
@@ -17,6 +16,8 @@ public class WeatherViewModel extends ActivityViewModel<WeatherActivity> impleme
 
     private WeatherService service;
     private DayForecast dayForecast;
+    private ObservableBoolean isSearchHide;
+    private ObservableBoolean isSearchResultHide;
 
     public WeatherViewModel(WeatherActivity activity) {
         super(activity);
@@ -25,7 +26,14 @@ public class WeatherViewModel extends ActivityViewModel<WeatherActivity> impleme
 
     private void init() {
         service = new WeatherService();
+        initObservables();
         getWeatherForecast();
+    }
+
+    @Override
+    public void initObservables() {
+        isSearchHide = new ObservableBoolean(false);
+        isSearchResultHide = new ObservableBoolean(true);
     }
 
     @Override
@@ -46,6 +54,14 @@ public class WeatherViewModel extends ActivityViewModel<WeatherActivity> impleme
                 dayForecast = forecast;
             }
         });
+    }
+
+    public ObservableBoolean getIsSearchHide() {
+        return isSearchHide;
+    }
+
+    public ObservableBoolean getIsSearchResultHide() {
+        return isSearchResultHide;
     }
 
     public DayForecast getDayForecast() {

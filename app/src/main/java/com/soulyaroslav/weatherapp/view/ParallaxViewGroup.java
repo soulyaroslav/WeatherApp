@@ -99,13 +99,15 @@ public class ParallaxViewGroup extends ViewGroup {
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
         int height = 0;
         int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View child = getChildAt(i);
-            measureChild(child, widthMeasureSpec, heightMeasureSpec);
-            int childHeight = child.getMeasuredHeight();
-            height += childHeight;
+        if(childCount != 0) {
+            for (int i = 0; i < childCount; i++) {
+                View child = getChildAt(i);
+                measureChild(child, widthMeasureSpec, heightMeasureSpec);
+                int childHeight = child.getMeasuredHeight();
+                height += childHeight;
+            }
+            height = height / childCount;
         }
-        height = height / childCount;
         return modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height;
     }
 

@@ -5,5 +5,6 @@ package com.soulyaroslav.weatherapp.view.weather;
  */
 
 public interface WeatherContract {
+    void initObservables();
     void getWeatherForecast();
 }
